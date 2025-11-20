@@ -8,3 +8,4 @@ webdriver-manager==4.0.1
 lxml==4.9.3
 gunicorn==21.2.0
 pandas==2.2.1
+python-3.12.7
