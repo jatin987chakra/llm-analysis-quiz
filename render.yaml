@@ -1,8 +1,13 @@
 services:
   - type: web
-    name: your-app-name
+    name: your-app
     env: python
+    plan: free
+    region: oregon
     python:
       version: 3.12.7
     buildCommand: pip install --upgrade pip && pip install -r requirements.txt
     startCommand: python app.py
+    envVars:
+      - key: PIP_ONLY_BINARY
+        value: all
