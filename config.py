@@ -16,6 +16,7 @@ class Config:
     # OpenAI settings
     OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', '')
     OPENAI_MODEL = os.getenv('OPENAI_MODEL', 'gpt-4o-mini')
+        OPENAI_BASE_URL = os.getenv('OPENAI_BASE_URL', None)  # Optional: for using custom endpoints like AI Pipe
     
     # Server settings
     PORT = int(os.getenv('PORT', 5000))
