@@ -1,5 +1,5 @@
 import logging
-import openai
+impfrom openai import OpenAI
 import json
 
 logger = logging.getLogger(__name__)
@@ -9,7 +9,10 @@ class LLMHelper:
     
     def __init__(self, config):
         self.config = config
-        openai.api_key = config.OPENAI_API_KEY
+        self.client = OpenAI(
+            api_key=config.OPENAI_API_KEY,
+            base_url=getattr(config, 'OPENAI_BASE_URL', None)
+        )
         self.model = config.OPENAI_MODEL
     
     def get_completion(self, prompt, system_message=None, temperature=0.1):
@@ -35,7 +38,7 @@ class LLMHelper:
             
             logger.info(f'Requesting completion from {self.model}')
             
-            response = openai.chat.completions.create(
+            response = self.client.chat.completions.create(
                 model=self.model,
                 messages=messages,
                 temperature=temperature,
